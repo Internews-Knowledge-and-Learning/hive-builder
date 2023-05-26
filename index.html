@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hive Builder</title>
+	<link id="CssRegistration1" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/bootstrap.min.css?ctag=230524">
+	<link id="CssRegistration2" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/style-global.css">
+	<link id="CssRegistration4" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/font-awesome.min.css?ctag=230524">
+	<link id="CssRegistration1" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/department.css?ctag=230524">
+	<link id="CssRegistration3" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/responsive.css?ctag=230524">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <main>
+    <h1>Hive Builder</h1>
+        <p>Select the component you wish to build:</p>
+		<div class="panel-group">
+			<div class="panel-heading">
+				<a aria-expanded="false" href="#button" data-toggle="collapse" class="collapsed"><h4>Button</h4></a>
+			</div>
+	   <div class="collapse panel-collapse" id="button" area-expanded="false">
+		<div class="panel-body">
+    <h2>Button</h2>
+    <div class="row">
+      <div class="options col-md-6">
+        <section class="options">
+          <h3>Options</h3>
+          <p>Select your options:</p>
+          <form>
+            <div class="input-group mb-3" id="btn-header-input">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="btn-header">Button header</label>
+              </div>
+              <input type="text" class="form-control" id="btn-header" aria-label="btn-header">
+            </div>
+			<div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="btn-text">Button text</label>
+              </div>
+              <input type="text" class="form-control" id="btn-text" aria-label="btn-text" placeholder="Button Text">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="btn-style">Button style</label>
+                  </div>
+                  <select class="custom-select" id="btn-style">
+                    <option value="block-buttons blue-border" selected>Standard</option>
+                    <option value="inline-buttons blue-border">Small</option>
+					<option value="border dkblue-under">Secondary - Dark Blue</option>
+					<option value="border ltblue-under">Secondary - Light Blue</option>
+					<option value="border orange-under">Secondary - Orange</option>
+					<option value="border green-under">Secondary - Green</option>
+					<option value="border yellow-under">Secondary - Yellow</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="btn-size">Button link</label>
+                  </div>
+                  <input type="text" class="form-control" id="btn-link" aria-label="btn-link" placeholder="#">
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+      <div class="col-md-6">
+        <section class="preview">
+          <h3 class="preview-title">Preview</h3>
+          <div id="btn-preview-pane">
+            <a class="buttons block-buttons blue-border" href="#">Button Text</a>
+          </div>
+        </section>
+        <section class="component-code">
+          <div class="code-header">
+            <h3 class="code-title">Code</h3>
+            <button class="buttons inline-buttons blue-border" id="copy-btn-code">Copy Code</button>
+          </div>
+          <div class="code-box">
+            <pre class="code-text">
+<span id="btn-print-code"><span class="code-open-tag">&lt;<span class="code-btn-tag">a</span>&#32;href="<span id="code-btn-link">#</span>" class&#61;&#34;<span id="code-btn-class-style">buttons&#32;block&#45;buttons&#32;blue&#45;border</span>&#34;&gt;</span>
+  <span id="code-btn-header"></span><span id="code-btn-text">Button Text</span>
+<span class="code-close-tag">&lt;&#47;<span class="code-btn-tag">a</span>&gt;</span></span>
+            </pre>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>  
+</div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://internews.sharepoint.com/style%20library/custom/js/bootstrap.min.js?ctag=230524"></script>
+    <script src="https://kit.fontawesome.com/ea529b88ed.js"></script>
+    <script src="js/script.js"></script>
+
+</div>
+	
+  </body>
+</html>
+
