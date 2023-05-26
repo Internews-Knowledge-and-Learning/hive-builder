@@ -1,11 +1,9 @@
-*{
- font-family: 'Roboto', sans-serif;
-}
 main {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
   margin-top: 2rem;
+  font-family: 'Roboto', sans-serif;
 }
 .nav-tabs {
   border-bottom: 1px solid #0B5584;
