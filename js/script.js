@@ -332,11 +332,7 @@ function createButtongroupEditorCard(i) {
 	</div>
 	<div class="panel-collapse collapse" id="${i}" aria-expanded="false">
 		<div class="panel-body">
-		<form>
-          <div class="form-group" id="button-${i}-header-group">
-            <label for="button-${i}-header">Button Header</label>
-            <input type="text" class="form-control" id="button-${i}-header" placeholder="Button #${i} header">
-          </div>
+		<form><div class="form-group" id="button-${i}-header-group" ${ $("#btngroup-style").val() == "secondary" ? `style="display:none"` : ""}> <label for="button-${i}-header">Button Header</label><input type="text" class="form-control" id="button-${i}-header" placeholder="Button #${i} header"></div>
           <div class="form-group">
             <label for="button-${i}-text">Button Text</label>
             <input type="text" class="form-control" id="button-${i}-text" placeholder="Button #${i} text">
@@ -345,7 +341,7 @@ function createButtongroupEditorCard(i) {
             <label for="button-${i}-link">Button Link</label>
             <input type="text" class="form-control" id="button-${i}-link" placeholder="Button #${i} link">
 			</div>
-      <div class="form-groug" id="button-${i}-color-selector" style="display:none;">
+			<div class="form-group" id="button-${i}-color-selector" ${ $("#btngroup-style").val() == "standard" ? `style="display:none"` : ""}>
 					<label class="input-group-text" for="button-${i}-color">Button color</label><br>
                   <select class="custom-select" id="button-${i}-color">
 					<option value="border dkblue-under">Secondary - Dark Blue</option>
