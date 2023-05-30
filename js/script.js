@@ -8,8 +8,10 @@ $(document).ready(function() {
   maxCollapseCards = 3;
   initialCollapseCards(maxCollapseCards);
   initialButtongroupbuttons(maxCollapseCards);
+  initialBreadcrumbs(maxCollapseCards);
   preview("dl");
   preview("btngroup");
+  preview("brcr");
   // set list to show 3 items by default
   maxListItems = 3;
   initialListItems(maxListItems);
@@ -49,6 +51,123 @@ updateText("btn", "#btn-text", "#code-btn-text", "Button Text");
 // generates link text from input
 updateText("btn", "#btn-link", "#code-btn-link", "#");
 
+/**********************************
+ * Breadcrumbs                    *
+ **********************************/
+
+// on select change, show only the required no of list items to edit, update code and preview
+$("#brcr-item-no").on('focus', function() {
+  $(this).data("previous",$(this).val());
+  $(this).blur();
+  $("#brcr-item-no").change(function(data){
+    newMax = Number(($(this).val()));
+    oldMax = Number(($(this).data("previous")));
+    // compare old and new max list item value
+    if (newMax > oldMax) {
+      for (let i = oldMax; i < newMax; i++) {
+        // add new items
+        breadcrumbItem = createBreadcrumbItem(i+1);
+        $("#code-brcr-items").append(breadcrumbItem);
+        card = createBreadcrumbItemEditorCard(i+1);
+        $("#brcr-items").append(card);
+		$('#brcr-item-'+newMax+'-link').hide();
+		$('#brcr-item-'+oldMax+'-link').show();
+		$('#brcr-item-'+newMax+'-link-label').hide();
+		$('#brcr-item-'+oldMax+'-link-label').show();
+		$('#brcr-item-'+newMax+'-link').text(" ");
+		$('#code-brcr-item-'+newMax+'-open').text("");
+		$('#code-brcr-item-'+newMax+'-link').text("");
+		$('#code-brcr-item-'+newMax+'-title-open').text("");
+		$('#code-brcr-item-'+newMax+'-link-title').text("");
+		$('#code-brcr-item-'+newMax+'-title-close').text("");
+		$('#code-brcr-item-'+newMax+'-spacer').text("");
+		$('#code-brcr-item-'+oldMax+'-open').text(`<a href="`);
+		$('#code-brcr-item-'+oldMax+'-link').text("#");
+		$('#code-brcr-item-'+oldMax+'-title-open').text(`" title="`);
+		$('#code-brcr-item-'+oldMax+'-link-title').text("#");
+		$('#code-brcr-item-'+oldMax+'-title-close').text(`">`);
+		$('#code-brcr-item-'+oldMax+'-spacer').text(`<span class="breadcrumb-spacer"></span>`);
+      }
+    } else {
+      for (let i = newMax; i < oldMax; i++) {
+        // remove items
+        $("#code-brcr-item-"+(i+1)).remove();
+        $("#brcr-item-"+(i+1)+"-card").remove();
+		$('#brcr-item-'+newMax+'-link').hide();
+		$('#brcr-item-'+oldMax+'-link').show();
+		$('#brcr-item-'+newMax+'-link-label').hide();
+		$('#brcr-item-'+oldMax+'-link-label').show();
+		$('#code-brcr-item-'+newMax+'-open').text("");
+		$('#code-brcr-item-'+newMax+'-link').text("");
+		$('#code-brcr-item-'+newMax+'-title-open').text("");
+		$('#code-brcr-item-'+newMax+'-link-title').text("");
+		$('#code-brcr-item-'+newMax+'-title-close').text("");
+		$('#code-brcr-item-'+newMax+'-spacer').text("");
+      }
+    }
+    // reset previous value
+    $(this).removeData("previous");
+    preview("brcr");
+  });
+});
+
+
+// create all list item editor cards and code on page load
+function initialBreadcrumbs(maxCollapseCards) {
+  for (let i = 1; i <= maxCollapseCards; i++) {
+    breadcrumbItem = createBreadcrumbItem(i);
+    $("#code-brcr-items").append(breadcrumbItem);
+    brcrCard = createBreadcrumbItemEditorCard(i);
+    $("#brcr-items").append(brcrCard);
+	$('#brcr-item-'+maxCollapseCards+'-link').hide();
+	$('#brcr-item-'+maxCollapseCards+'-link-label').hide();
+	$('#code-brcr-item-'+maxCollapseCards+'-open').text("");
+	$('#code-brcr-item-'+maxCollapseCards+'-link').text("");
+	$('#code-brcr-item-'+maxCollapseCards+'-title-open').text("");
+	$('#code-brcr-item-'+maxCollapseCards+'-link-title').text("");
+	$('#code-brcr-item-'+maxCollapseCards+'-title-close').text("");
+	$('#code-brcr-item-'+maxCollapseCards+'-spacer').text("");
+  }
+  preview("brcr");
+}
+
+// create single list item code, shows first card and collapses all others
+function createBreadcrumbItem(i) {
+  return `<span class="code-brcr-item" id="code-brcr-item-${i}"><span class="code-open-tag"><span id="code-brcr-item-${i}-open">&lt;a href="</span><span id="code-brcr-item-${i}-link">#</span><span id="code-brcr-item-${i}-title-open">" title="</span><span id="code-brcr-item-${i}-link-title">#</span><span id="code-brcr-item-${i}-title-close">"&gt;</span>
+    <span class="code-brcr-item-${i}-title">#</span><span class="code-close-tag">&lt;&#47;a&gt;</span><span id="code-brcr-item-${i}-spacer">&lt;span class="breadcrumb-spacer">&lt/span></span></span>`;
+}
+
+// create single card editor card, shows first card and collapses all others
+function createBreadcrumbItemEditorCard(i) {
+  return `
+<div class="input-group mb-3" id="brcr-item-${i}-card">
+	<div class="col-md-6">
+  <div class="input-group-prepend">
+  <label class="input-group-text" for="brcr-item-${i}-title">Title</label>
+  </div>
+  <input type="text" class="form-control" id="brcr-item-${i}-title" aria-label="Breadcrumb title">
+  </div>
+  <div class="col-md-6">
+  <div class="input-group-prepend">
+  <label class="input-group-text" for="brcr-item-${i}-link" id="brcr-item-${i}-link-label">Link</label>
+  </div>
+  <input type="text" class="form-control" id="brcr-item-${i}-link" aria-label="Breadcrumb link">
+  </div>
+</div>`;
+}
+
+// generate card text from input
+updateBreadcrumbItems(8);
+
+function updateBreadcrumbItems(breadcrumbItemLimit) {
+  for (let i = 1; i <= breadcrumbItemLimit; i++) {
+//    toggleCheckbox("brcr", "#brcr-item-${i}-check-sublist", "#brcr-item-${i}-sublist-form");
+    updateText("brcr", "#brcr-item-" + i + "-title", ".code-brcr-item-" + i + "-title", "Breadcrumb item #" + i + " title");
+	updateText("brcr", "#brcr-item-" + i + "-title", "#code-brcr-item-" + i + "-link-title", "Breadcrumb item #" + i + " title");
+	updateText("brcr", "#brcr-item-" + i + "-link", "#code-brcr-item-" + i + "-link", "#");
+	preview("brcr");
+  }
+}
 
 /**********************************
  * card                           *
@@ -964,6 +1083,7 @@ function preview(component) {
 }
 
 copyCode("btngroup");
+copyCode("brcr");
 copyCode("an");
 copyCode("au");
 copyCode("btn");

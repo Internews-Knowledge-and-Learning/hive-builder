@@ -4,13 +4,14 @@
     <title>Hive Builder</title>
 	<link id="CssRegistration1" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/bootstrap.min.css?ctag=230524">
 	<link id="CssRegistration2" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/style-global.css">
-	<link id="CssRegistration4" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/font-awesome.min.css?ctag=230524">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link id="CssRegistration1" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/department.css?ctag=230524">
 	<link id="CssRegistration3" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/responsive.css?ctag=230524">
     <link href="css/style.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link id="CssRegistration5" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf">
   </head>
   <body>
     <main>
@@ -95,7 +96,6 @@
     </div>
   </div>  
   </div>
-  		<div class="panel-group">
 			<div class="panel-heading">
 				<a aria-expanded="false" href="#button-group" data-toggle="collapse" class="collapsed"><h4>Button Group</h4></a>
 			</div>
@@ -175,12 +175,70 @@
       </div>
     </div>
 </div>
+</div>
+</div>
+<div class="panel-heading">
+				<a aria-expanded="false" href="#breadcrumbs" data-toggle="collapse" class="collapsed"><h4>Breadcrumbs</h4></a>
+			</div>
+	   <div class="collapse panel-collapse" id="breadcrumbs" area-expanded="false">
+		<div class="panel-body">
+		    <div class="row">
+      <div class="options col-md-6">
+        <section class="options">
+          <h3>Options</h3>
+          <p>Complete the following fields:</p>
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="brcr-item-no">No. of breadcrumb items</label>
+                  </div>
+                  <select class="custom-select" id="brcr-item-no">
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div>
+            <div id="brcr-items">
+          </div>
+        </section>
+      </div>
+      <div class="col-md-6">
+        <section class="preview">
+          <h3 class="preview-title">Preview</h3>
+          <div class="card" id="brcr-preview-pane"></div>
+        </section>
+        <section class="component-code">
+          <div class="code-header">
+            <h3 class="code-title">Code</h3>
+            <button class="btn btn-secondary" id="copy-brcr-code">Copy Code</button>
+          </div>
+          <div class="code-box">
+<pre class="code-text"><span id="brcr-print-code"><span class="code-open-tag">&lt;<span class="code-brcr-tag">div class="breadcrumbs"</span>&gt;</span><span id="code-brcr-items"></span>
+<span class="code-close-tag">&lt;&#47;<span class="code-brcr-tag">div</span>&gt;</span></span></pre>
+          </div>
+        </section>
+      </div>
+    </div>
+	</div>
+	</div>
+	</div>
+</div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://internews.sharepoint.com/style%20library/custom/js/bootstrap.min.js?ctag=230524"></script>
     <script src="https://kit.fontawesome.com/ea529b88ed.js"></script>
     <script src="js/script.js"></script>
 
-</div>
+
 	
   </body>
 </html>
