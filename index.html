@@ -9,8 +9,8 @@
 	<link id="CssRegistration3" rel="stylesheet" type="text/css" href="https://internews.sharepoint.com/Style%20Library/custom/css/responsive.css?ctag=230524">
     <link href="css/style.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   </head>
   <body>
     <main>
@@ -29,20 +29,7 @@
           <h3>Options</h3>
           <p>Select your options:</p>
           <form>
-            <div class="input-group mb-3" id="btn-header-input">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="btn-header">Button header</label>
-              </div>
-              <input type="text" class="form-control" id="btn-header" aria-label="btn-header">
-            </div>
-			<div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="btn-text">Button text</label>
-              </div>
-              <input type="text" class="form-control" id="btn-text" aria-label="btn-text" placeholder="Button Text">
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
+		  <div class="form-group col-md-12">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <label class="input-group-text" for="btn-style">Button style</label>
@@ -58,6 +45,20 @@
                   </select>
                 </div>
               </div>
+            <div class="input-group mb-3" id="btn-header-input">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="btn-header">Button header</label>
+              </div>
+              <input type="text" class="form-control" id="btn-header" aria-label="btn-header">
+            </div>
+			<div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="btn-text">Button text</label>
+              </div>
+              <input type="text" class="form-control" id="btn-text" aria-label="btn-text" placeholder="Button Text">
+            </div>
+            <div class="form-row">
+           
               <div class="form-group col-md-6">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -93,6 +94,86 @@
       </div>
     </div>
   </div>  
+  </div>
+  		<div class="panel-group">
+			<div class="panel-heading">
+				<a aria-expanded="false" href="#button-group" data-toggle="collapse" class="collapsed"><h4>Button Group</h4></a>
+			</div>
+	   <div class="collapse panel-collapse" id="button-group" area-expanded="false">
+		<div class="panel-body">
+		<div class="row">
+      <div class="options col-md-6">
+        <section class="options">
+          <h3>Options</h3>
+          <p>Complete the following fields:</p>
+          <form class="needs-validation" id="col-form" novalidate>
+              <div class="form-group col-md-12">
+			  <div class="row">
+              <div class="input-group col-md-4">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="btngr-button-no">No. of buttons</label>
+                </div>
+				<div class="input-group-prepend">
+                <select class="custom-select" id="btngr-button-no">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3" selected>3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                </select>
+              </div>
+			  </div>
+              <div class="form-group col-md-4">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="btngroup-align">Button group alignment</label>
+                  </div>
+                  <select class="custom-select" id="btngroup-align">
+                    <option value="divcenter" selected>Center</option>
+                    <option value="divleft">Left</option>
+                  </select>
+                </div>
+              </div>
+			   <div class="form-group col-md-4">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="btngroup-style">Button style</label>
+                  </div>
+                  <select class="custom-select" id="btngroup-style">
+                    <option value="standard" selected>Standard</option>
+					<option value="secondary">Secondary</option>
+                  </select>
+                </div>
+              </div>
+          </form>
+		  </div>
+		  <div class="row">
+          <div class="panel-group" id="buttongroup-buttons">
+          </div>
+		  </div>
+        </section>
+		</div>
+      <div class="col-md-6">
+        <section class="preview">
+          <h3 class="preview-title">Preview</h3>
+          <div id="btngroup-preview-pane"></div>
+        </section>
+        <section class="component-code">
+          <div class="code-header">
+            <h3 class="code-title">Code</h3>
+            <button class="buttons blue-border inline-buttons" id="copy-btngroup-code" type="submit">Copy Code</button>
+          </div>
+          <div class="code-box">
+<pre class="code-text"><span id="btngroup-print-code"><span class="code-open-tag">&lt;div class="<span id="code-btngroup-align">divcenter</span>"&gt;</span>
+  <span id="code-buttongroup-buttons"></span>
+<span class="code-close-tag">&lt;&#47;div&gt;</span></span></pre>
+          </div>
+        </section>
+      </div>
+    </div>
 </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://internews.sharepoint.com/style%20library/custom/js/bootstrap.min.js?ctag=230524"></script>

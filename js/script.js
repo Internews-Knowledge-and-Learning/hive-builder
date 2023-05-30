@@ -7,7 +7,9 @@ $(document).ready(function() {
   // set collapse to show 3 cards by default
   maxCollapseCards = 3;
   initialCollapseCards(maxCollapseCards);
+  initialButtongroupbuttons(maxCollapseCards);
   preview("dl");
+  preview("btngroup");
   // set list to show 3 items by default
   maxListItems = 3;
   initialListItems(maxListItems);
@@ -46,6 +48,7 @@ updateText("btn", "#btn-text", "#code-btn-text", "Button Text");
 
 // generates link text from input
 updateText("btn", "#btn-link", "#code-btn-link", "#");
+
 
 /**********************************
  * card                           *
@@ -234,168 +237,150 @@ function showCardImgs(cardCardLimit) {
 }
 
 /**********************************
- * carousel                       *
+ * Button Group                   *
  **********************************/
 
-// on selet change, show only the required no of cards to edit, update code and preview
-$("#crsl-slide-no").on('focus', function() {
+// on select change, show only the required no of cards to edit, update code and preview
+$("#btngr-button-no").on('focus', function() {
   $(this).data("previous",$(this).val());
   $(this).blur();
-  $("#crsl-slide-no").change(function(){
+  $("#btngr-button-no").change(function(){
     newMax = Number(($(this).val()));
     oldMax = Number(($(this).data("previous")));
     // compare old and new max list item value
     if (newMax > oldMax) {
       for (let i = oldMax; i < newMax; i++) {
         // add new items
-        indicator = createCarouselIndicator(i+1);
-        $("#code-crsl-indicators").append(indicator);
-        slide = createCarouselSlide(i+1);
-        $("#code-crsl-slides").append(slide);
-        crslCard = createCarouselEditorCard(i+1);
-        $("#carousel-slides").append(crslCard);
+        btncollapseCard = createbtncollapseCard(i+1);
+        $("#code-buttongroup-buttons").append(btncollapseCard);
+        colButton = createButtongroupEditorCard(i+1);
+        $("#buttongroup-buttons").append(colButton);
       }
     } else {
       for (let i = newMax; i < oldMax; i++) {
         // remove items
-        $("#code-crsl-indicator-"+(i+1)).remove();
-        $("#code-crsl-slide-"+(i+1)).remove();
-        $("#crsl-card-"+(i+1)).remove();
+        $("#code-buttongroup-button-"+(i+1)).remove();
+        $("#col-button-"+(i+1)).remove();
       }
     }
     // reset previous value
     $(this).removeData("previous");
-    preview("crsl");
+    preview("btngroup");
   });
 });
 
-// create all carousel editor cards and code on page load
-function initialCarouselSlides(maxSlides) {
-  for (let i = 1; i <= maxSlides; i++) {
-    indicator = createCarouselIndicator(i);
-    $("#code-crsl-indicators").append(indicator);
-    slide = createCarouselSlide(i);
-    $("#code-crsl-slides").append(slide);
-    crslCard = createCarouselEditorCard(i);
-    $("#carousel-slides").append(crslCard);
+// create all collapse editor cards and code on page load
+function initialButtongroupbuttons(maxbtncollapseCards) {
+  for (let i = 1; i <= maxbtncollapseCards; i++) {
+    btncollapseCard = createbtncollapseCard(i);
+    $("#code-buttongroup-buttons").append(btncollapseCard);
+    colButton = createButtongroupEditorCard(i);
+    $("#buttongroup-buttons").append(colButton);
   }
-  preview("crsl");
+  preview("btngroup");
 }
+	
+$("#btngroup-align").change(function() {
+		$("#code-btngroup-align").text($(this).val());
+		preview("btngroup");
+});
 
-// create single carousel slide indicator code
-function createCarouselIndicator(i) {
-  return `<span id="code-crsl-indicator-${i}">\n    <span class="code-open-tag">&lt;li&#32;data&#45;target&#61;&#34;&#35;<span class="code-crsl-id">modname&#45;unitno&#45;carousel&#45;no</span>&#34;&#32;data&#45;slide&#45;to&#61;&#34;${ i - 1 }&#34;${ i == 1 ? "&#32;class&#61;&#34;active&#34;" : "" }&gt;</span><span class="code-close-tag">&lt;&#47;li&gt;</span></span>`;
-//  return `<span id="code-crsl-indicator-${i}"><span class="code-open-tag">&lt;li&#32;data&#45;target&#61;&#34;&#35;<span class="code-crsl-id">modname&#45;unitno&#45;carousel&#45;no</span>&#34;&#32;data&#45;slide&#45;to&#61;&#34;${ i - 1 }&#34;${ i == 1 ? "&#32;class&#61;&#34;active&#34;" : "" }&gt;</span><span class="code-close-tag">&lt;&#47;li&gt;</span>${ i == maxSlides ? "" : "\n    " }</span>`;
+
+// sets button style
+$("#btngroup-style").change(function() {
+ if ($(this).val() == "secondary") {
+	for (let i = 1; i <= 10; i++) {
+	//var buttoncolor = document.querySelector('#button-'+i+'-color-selector');
+	$('#button-'+i+'-header-group').hide();
+	$('#code-button-'+i+'-header').text("");
+	$('#button-'+i+'-color-selector').show();
+	$("#code-button-"+i+"-color").text("buttons border dkblue-under");
+	$("#code-button-"+i+"-header-open").text(" ");
+	$("#code-button-"+i+"-header-close").text(" ");
+	$('#button-'+i+'-header').val("");
+	preview("btngroup");
 }
+	} else {
+	for (let i = 1; i <= 10; i++) {
+	$('#button-'+i+'-header-group').show();
+	$('#button-'+i+'-color-selector').hide();
+	$("#code-button-"+i+"-color").text("buttons block-buttons blue-border");
+	$("#code-button-"+i+"-header-open").text("<h3>");
+	$("#code-button-"+i+"-header-close").text("</h3>");
+	preview("btngroup");
+	}
+}});	
+	
 
-// create single carousel slide code
-function createCarouselSlide(i) {
-  return `<span id="code-crsl-slide-${i}"><span class="code-open-tag">&lt;div&#32;class&#61;&#34;carousel&#45;item${ i == 1 ? " active" : "" }&#34;&gt;</span><span id="code-crsl-slide-${i}-img">
-    <span class="code-open-tag">&lt;img&#32;src&#61;&#34;<span id="code-crsl-slide-${i}-img-src">https:&#47;&#47;via.placeholder.com&#47;800x400</span>&#34;<span id="code-crsl-slide-${i}-img-alt"></span>&gt;</span></span>
-    <span class="code-open-tag">&lt;div&#32;class&#61;&#34;carousel&#45;caption&#34;&gt;</span><span id="code-crsl-slide-${i}-title"></span>
-      <span class="code-open-tag">&lt;p&gt;</span>
-        <span id="code-crsl-slide-${i}-text">Carousel slide #${i} text</span>
-      <span class="code-close-tag">&lt;&#47;p&gt;</span>
-    <span class="code-close-tag">&lt;&#47;div&gt;</span>
-  <span class="code-close-tag">&lt;&#47;div&gt;</span></span>`;
+
+// create single button code
+function createbtncollapseCard(i) {
+return `
+	<span id="code-buttongroup-button-${i}"><span class="code-open-tag">&lt;a</span>&#32;href="<span id="code-button-${i}-link">#</span>" class&#61;&#34;<span id="code-button-${i}-color">${ $("#btngroup-style").val() == "secondary" ? "buttons border dkblue-under" : "buttons block-buttons blue-border" }</span>&#34;&gt;</span>
+  <span id="code-button-${i}-header-open">&lt;h3></span><span id="code-button-${i}-header"></span><span id="code-button-${i}-header-close">&lt;/h3></span><span id="code-button-${i}-text">Button Text</span>
+<span class="code-close-tag">&lt;&#47;<span class="code-btn-tag">a</span>&gt;</span></span>
+ </span>`;
 }
 
 // create single collapse editor card, shows first card and collapses all others
-function createCarouselEditorCard(i) {
+function createButtongroupEditorCard(i) {
   return `
-    <div class="collapse-card crsl-card ${ i == 1 ? "" : "collapsed" }" id="crsl-card-${i}">
-      <div class="collapse-header" id="crsl-card-heading-${i}">
-        <button class="btn btn-link"><h5 class="h4">Slide #${i}</h5></button>
-      </div>
-      <div class="collapse-body" id="collapse-${i}">
-        <form class="needs-validation crsl-slide-form">
-          <div class="form-group crsl-slide-img-form">
-            <label for="crsl-slide-${i}-img-src">Image source</label>
-            <input type="text" class="form-control" id="crsl-slide-${i}-img-src" placeholder="https://moodle.iddkingsonline.com/file.php/123/images/image.jpg">
-            <small id="crsl-img-src-help" class="form-text text-muted">Select an image with 2:1 ratio (i.e 800 x 400px). The image must first be uploaded to Keats, where the generated link can be copied and pasted from.</small>
-          </div>
-          <div class="form-group crsl-slide-img-form">
-            <label for="crsl-slide-${i}-img-alt">Alternative text*</label>
-            <textarea class="form-control" id="crsl-slide-${i}-img-alt" placeholder="Description of image" rows="2" required></textarea>
-            <div class="invalid-feedback crsl-img-invalid-feedback">
-              Please provde alternative text for the image.
-            </div>
-          </div>
-          <div class="form-group crsl-slide-title-form" style="display:none">
-            <label for="crsl-slide-${i}-title">Caption title</label>
-            <input type="text" class="form-control" id="crsl-slide-${i}-title-text" placeholder="Carousel slide #${i} title" maxlength="65">
+	<div class="collapse-card ${ i == 1 ? "" : "collapsed" }" id="col-button-${i}">
+	<div class="panel-heading">
+		<a aria-expanded="false" href="#${i}" data-toggle="collapse" class="collapsed">
+			<h4>Button #${i}</h4></a>
+	</div>
+	<div class="panel-collapse collapse" id="${i}" aria-expanded="false">
+		<div class="panel-body">
+		<form>
+          <div class="form-group" id="button-${i}-header-group">
+            <label for="button-${i}-header">Button Header</label>
+            <input type="text" class="form-control" id="button-${i}-header" placeholder="Button #${i} header">
           </div>
           <div class="form-group">
-            <label for="crsl-slide-${i}-text">Caption text</label>
-            <textarea class="form-control" id="crsl-slide-${i}-text" placeholder="Carousel slide #${i} text" rows="4" maxlength="215"></textarea>
+            <label for="button-${i}-text">Button Text</label>
+            <input type="text" class="form-control" id="button-${i}-text" placeholder="Button #${i} text">
           </div>
+		  <div class="form-group">
+            <label for="button-${i}-link">Button Link</label>
+            <input type="text" class="form-control" id="button-${i}-link" placeholder="Button #${i} link">
+			</div>
+      <div class="form-groug" id="button-${i}-color-selector" style="display:none;">
+					<label class="input-group-text" for="button-${i}-color">Button color</label><br>
+                  <select class="custom-select" id="button-${i}-color">
+					<option value="border dkblue-under">Secondary - Dark Blue</option>
+					<option value="border ltblue-under">Secondary - Light Blue</option>
+					<option value="border orange-under">Secondary - Orange</option>
+					<option value="border green-under">Secondary - Green</option>
+					<option value="border yellow-under">Secondary - Yellow</option>
+                  </select>
+                </div>                 </div>
+            </div>
         </form>
       </div>
     </div>
+	</div>
   `;
 }
 
-// generate carousel text from input
-updateCarouselSlides(8);
 
-updateText("crsl", "#crsl-id", ".code-crsl-id", "modname-unitno-carousel-no");
+// generate card text from input
+updateButtongroupText(8);
 
-// toggle carousel image code
-$(document).on("click", "#crsl-check-img", function(event) {
-  $("#crsl-check-img").toggleClass("unchecked").toggleClass("checked");
-  $("#code-crsl-text-only").text($("#code-crsl-text-only").text() == "" ? " text-only" : "");
-  carouselToggleImage(8);
-});
-
-function carouselToggleImage(carouselSlideLimit) {
-  for (let i = 1; i <= carouselSlideLimit; i++) {
-  $("#crsl-check-img").hasClass("checked")
-    ? $("#code-crsl-slide-" + i + "-img").html('\n    <span class="code-crsl-slide-img-open"></span><span id="code-crsl-slide-' + i + '-img-src"></span><span class="code-crsl-slide-img-middle"></span><span id="code-crsl-slide-' + i + '-img-alt"></span><span class="code-crsl-slide-img-close"></span>')
-    : $("#code-crsl-slide-" + i + "-img").text("");
-  $(".code-crsl-slide-img-open").text('<img src="');
-  $("#crsl-slide-" + i + "-img-src").val() !== "" ? $("#code-crsl-slide-" + i + "-img-src").text($("#crsl-slide-" + i + "-img-src").val()) : $("#code-crsl-slide-" + i + "-img-src").text("https://via.placeholder.com/800x400");
-  $(".code-crsl-slide-img-middle").text('"');
-  $("#code-crsl-slide-" + i + "-img-alt").text( $("#crsl-slide-" + i + "-img-alt").val() !== ""
-    ? ' alt="' + $("#crsl-slide-" + i + "-img-alt").val() + '"'
-    : "" );
-    //$("#crsl-slide-" + i + "-img-alt").val() !== "" ? $("#code-crsl-slide-" + i + "-img-alt").text($("#crsl-slide-" + i + "-img-alt").val()) : $("#code-crsl-slide-" + i + "-img-alt").text("");
-  $(".code-crsl-slide-img-close").text('>');
-  preview("crsl");
-  }
-};
-
-//toggle carousel caption title code
-$(document).on("click", "#crsl-check-title", function(event) {
-  $("#crsl-check-title").toggleClass("unchecked").toggleClass("checked");
-  carouselToggleTitle(8);
-});
-
-function carouselToggleTitle(carouselSlideLimit) {
-  for (let i = 1; i <= carouselSlideLimit; i++) {
-  $("#crsl-check-title").hasClass("checked")
-    ? $("#code-crsl-slide-" + i + "-title").html('\n      <span class="code-crsl-slide-title-open"></span>\n        <span id="code-crsl-slide-' + i + '-title-text"></span>\n      <span class="code-crsl-slide-title-close"></span>')
-    : $("#code-crsl-slide-" + i + "-title").text("");
-  $(".code-crsl-slide-title-open").text('<h3>');
-  $("#crsl-slide-" + i + "-title-text").val() !== "" ? $("#code-crsl-slide-" + i + "-title-text").text($("#crsl-slide-" + i + "-title-text").val()) : $("#code-crsl-slide-" + i + "-title-text").text("Carousel slide #" + i + " title");
-  $(".code-crsl-slide-title-close").text('</h3>');
-  preview("crsl");
-  }
-};
-
-function updateCarouselSlides(carouselSlideLimit) {
-  for (let i = 1; i <= carouselSlideLimit; i++) {
-    // toggle optional image input field 
-    toggleCheckbox("crsl", "#crsl-check-img", ".crsl-slide-img-form");
-    toggleCheckbox("crsl", "#crsl-check-title", ".crsl-slide-title-form");
-    toggleCheckboxText("#crsl-check-img", "#crsl-toggle-img");
-    toggleCheckboxText("#crsl-check-title", "#crsl-toggle-title");
-    // update carousel text
-    updateText("crsl", "#crsl-slide-" + i + "-img-src", "#code-crsl-slide-" + i + "-img-src", "https://via.placeholder.com/800x400");
-    updateAltText("crsl", "#crsl-slide-" + i + "-img-alt", "#code-crsl-slide-" + i + "-img-alt");
-    updateText("crsl", "#crsl-slide-" + i + "-title-text", "#code-crsl-slide-" + i + "-title-text", "Carousel slide #" + i + "title");
-    updateText("crsl", "#crsl-slide-" + i + "-text", "#code-crsl-slide-" + i + "-text", "Carousel slide #" + i + " text");
+function updateButtongroupText(btncollapseCardLimit) {
+  for (let i = 1; i <= btncollapseCardLimit; i++) {
+    updateText("btngroup", "#button-" + i + "-text", "#code-button-" + i + "-text", "Button #" + i + "text");
+    updateText("btngroup", "#button-" + i + "-header", "#code-button-" + i + "-header", "Button #" + i + "header");
+	updateText("btngroup", "#button-" + i + "-link", "#code-button-" + i + "-link", "#");
+  preview("btngroup");
+  $(document).on('click', "#button-" + i + "-color", function (event) {
+     var buttonstyle = $(this).val();
+	$("#code-button-"+i+"-color").text("buttons " + buttonstyle);
+	preview("btngroup");
+    });
   }
 }
+
 
 /**********************************
  * collapse                       *
@@ -488,249 +473,7 @@ function updateCollapseText(collapseCardLimit) {
   }
 }
 
-/**********************************
- * Button Group                          *
- **********************************/
 
-// on select change, show only the required no of buttons to edit, update code and preview
-$("#cd-button-no").on('focus', function() {
-  $(this).data("previous",$(this).val());
-  $(this).blur();
-  $("#cd-button-no").change(function(){
-    newMax = Number(($(this).val()));
-    oldMax = Number(($(this).data("previous")));
-    // compare old and new max list item value
-    if (newMax > oldMax) {
-      for (let i = oldMax; i < newMax; i++) {
-        // add new items
-        button = createbutton(i+1);
-        $("#code-cd-buttons").append(button);
-        cdbutton = createbuttonEditorbutton(i+1);
-        $("#buttons").append(cdbutton);
-      }
-    } else {
-      for (let i = newMax; i < oldMax; i++) {
-        // remove items
-        $("#code-cd-button-"+(i+1)).remove();
-        $("#cd-button-"+(i+1)).remove();
-      }
-    }
-    // reset previous value
-    $(this).removeData("previous");
-    if ($("#cd-type").val() == "float-box") $(".cd-img-check").hide();
-    preview("cd");
-  });
-});
-
-
-// create all button editor buttons and code on page load
-function initialbuttons(maxbuttons) {
-  for (let i = 1; i <= maxbuttons; i++) {
-    button = createbutton(i);
-    $("#code-cd-buttons").append(button);
-    cdbutton = createbuttonEditorbutton(i);
-    $("#buttons").append(cdbutton);
-  }
-  preview("cd");
-}
-
-// create single button button code
-function createbutton(i) {
-  return `<span id="code-cd-button-${i}"><pre>  <span class="code-open-tag">&lt;div&#32;class&#61;&#34;<span class="code-cd-type">${ $("#cd-type").val() == "float-box" ? "float-box" : "button" }</span>&#34;&gt;</span><span id="code-cd-${i}-img">
-    <span id="code-cd-${i}-img-open">&lt;<span id="code-cd-img-container-open">img</span>&#32;src&#61;&#34;</span><span id="code-cd-${i}-img-src">https:\/\/via.placeholder.com\/300</span><span id="code-cd-${i}-img-middle">&#34;</span><span id="code-cd-${i}-img-alt"></span>&gt;<span id="code-cd-img-container-close"></span></span></span>
-    <span class="code-open-tag">&lt;div&#32;class&#61;&#34;<span class="code-cd-body-class">button</span>&#45;body&#34;&gt;</span><span id="code-cd-${i}-title">
-      <span>&lt;h4&gt;</span><span id="code-cd-${i}-title-text">button #${i} title</span><span>&lt;&#47;h4&gt;</span></span>
-      <span class="code-open-tag">&lt;p&gt;</span><span id="code-cd-${i}-text">button #${i} text</span><span class="code-close-tag">&lt;&#47;p&gt;</span>
-    <span class="code-close-tag">&lt;&#47;div&gt;</span>
-  <span class="code-close-tag">&lt;&#47;div&gt;</span></pre></span>`;
-}
-
-// create single button editor button, shows first button and collapses all others
-function createbuttonEditorbutton(i) {
-  return `
-    <div class="collapse-button cd-button ${ i == 1 ? "" : "collapsed" }" id="cd-button-${i}">
-      <div class="collapse-header" id="cd-button-heading-${i}">
-        <button class="btn btn-link"><h5 class="h4">button #${i}</h5></button>
-      </div>
-      <div class="collapse-body" id="cd-collapse-${i}">
-        <form>
-          <div class="custom-control custom-checkbox cd-img-check">
-            <input type="checkbox" class="custom-control-input checked" id="cd-${i}-check-img" checked>
-            <label class="custom-control-label" for="cd-${i}-check-img"><span id="cd-${i}-toggle-img">Remove</span> image</label>
-          </div>
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input checked" id="cd-${i}-check-title" checked>
-            <label class="custom-control-label" for="cd-${i}-check-title"><span id="cd-${i}-toggle-title">Remove</span> title</label>
-          </div>
-          <div class="form-group cd-img-form cd-${i}-img-form" id="cd-${i}-img-src-form">
-            <label for="cd-${i}-header">Img src</label>
-            <input type="text" class="form-control" id="cd-${i}-img-src" placeholder="https://via.placeholder.com/300">
-          </div>
-          <div class="form-group cd-img-form cd-${i}-img-form" id="cd-${i}-img-alt-form">
-            <label for="cd-${i}-header">Img alt text</label>
-            <input type="text" class="form-control" id="cd-${i}-img-alt" placeholder="Description of image">
-          </div>
-          <div class="form-group" id="cd-${i}-title-form">
-            <label for="cd-${i}-title">Title</label>
-            <input type="text" class="form-control" id="cd-${i}-title" placeholder="button #${i} title">
-          </div>
-          <div class="form-group">
-            <label for="cd-${i}-text">Body text</label>
-            <textarea class="form-control" id="cd-${i}-text" placeholder="button #${i} text" rows="6"></textarea>
-          </div>
-        </form>
-      </div>
-    </div>
-  `;
-}
-
-// generate button text from input
-updatebuttons(4);
-
-function updatebuttons(buttonbuttonLimit) {
-  for (let i = 1; i <= buttonbuttonLimit; i++) {
-    // toggle optional input fields
-    toggleCheckboxText("#cd-" + i + "-check-img", "#cd-" + i + "-toggle-img");
-    toggleCheckboxText("#cd-" + i + "-check-title", "#cd-" + i + "-toggle-title");
-    toggleCheckbox("cd", "#cd-" + i + "-check-img", ".cd-" + i + "-img-form");
-    toggleCheckbox("cd", "#cd-" + i + "-check-title", "#cd-" + i + "-title-form, #code-cd-" + i + "-title");
-    // toggle img code
-    $(document).on('click', "#cd-" + i + "-check-img", function (event) {
-      $("#cd-" + i + "-check-img").hasClass("checked")
-        ? $("#code-cd-" + i + "-img").html('\n    <span class="code-cd-img-open"></span></span><span class="code-cd-img-src"></span><span id="code-cd-' + i + '-img-src"></span><span class="code-cd-img-alt"></span><span id="code-cd-' + i + '-img-alt"></span><span class="code-cd-img-close"></span>')
-        : $("#code-cd-" + i + "-img").text("");
-      $(".code-cd-img-open").text('<img');
-      $(".code-cd-img-src").text(' src="');
-      $("#code-cd-" + i + "-img-src").text($("#cd-" + i + "-img-src").val() !== "" ? $("#cd-" + i + "-img-src").val() : "https:\/\/via.placeholder.com\/300");
-      $(".code-cd-img-alt").text('"');
-      $("#code-cd-" + i + "-img-alt").text($("#cd-" + i + "-img-alt").val() !== "" ? ' alt="' + $("#cd-" + i + "-img-alt").val() + '"' : "");
-      $(".code-cd-img-close").text('>');
-      preview("cd");
-    });
-    // toggle title code
-    $(document).on('click', "#cd-" + i + "-check-title", function (event) {
-      $("#cd-" + i + "-check-title").hasClass("checked")
-        ? $("#code-cd-" + i + "-title").html('\n      <span class="code-cd-title-open"></span>\n        <span id="code-cd-' + i + '-title-text"></span>\n      <span class="code-cd-title-close"></span>')
-        : $("#code-cd-" + i + "-title").text("");
-      $(".code-cd-title-open").text('<h4 class="button-title">');
-      $("#cd-" + i + "-title").val() !== "" ? $("#code-cd-" + i + "-title-text").text($("#cd-" + i + "-title").val()) : $("#code-cd-" + i + "-title-text").text("button #" + i + " title");
-      $(".code-cd-title-close").text('</h4>');
-      preview("cd");
-    });
-    // update text
-    updateText("cd", "#cd-" + i + "-img-src", "#code-cd-" + i + "-img-src", "https://via.placeholder.com/300");
-    updateAltText("cd", "#cd-" + i + "-img-alt", "#code-cd-" + i + "-img-alt");
-    updateText("cd", "#cd-" + i + "-title", "#code-cd-" + i + "-title-text", "button #" + i + " title");
-    updateText("cd", "#cd-" + i + "-text", "#code-cd-" + i + "-text", "button #" + i + " text");
-  }
-}
-
-function showbuttonImgs(buttonbuttonLimit) {
-  for (let i = 1; i <= buttonbuttonLimit; i++) {
-    $("#code-cd-" + i + "-img").html('\n    <span class="code-cd-img-open"></span><span class="code-cd-img-src"></span><span id="code-cd-' + i + '-img-src"></span><span class="code-cd-img-alt"></span><span id="code-cd-' + i + '-img-alt"></span><span class="code-cd-img-close"></span>');
-    $(".code-cd-img-open").text('<img');
-    $(".code-cd-img-src").text(' src="');
-    $("#code-cd-" + i + "-img-src").text($("#cd-" + i + "-img-src").val() !== ""
-    ? $("#cd-" + i + "-img-src").val() : "https:\/\/via.placeholder.com\/300");
-    $(".code-cd-img-alt").text('"');
-    $("#code-cd-" + i + "-img-alt").text($("#cd-" + i + "-img-alt").val() !== ""
-      ? ' alt="' + $("#cd-" + i + "-img-alt").val() + '"'
-      : "");
-    $(".code-cd-img-close").text('>');
-  }
-}
-
-/**********************************
- * download                       *
- **********************************/
-
-updateText("dl", "#dl-link", "#code-dl-link",
-"http://keats.kcl.ac.uk/pluginfile.php/12345/course/section/file.pdf");
-updateText("dl", "#dl-type", "#code-dl-type", "PDF");
-updateText("dl", "#dl-size", "#code-dl-size", "86KB");
-
-
-/**********************************
- * geshi                          *
- **********************************/
-
-// sets geshi code language
-$("#geshi-lang").change(function() {
-  $("#code-geshi-lang").text($(this).val());
-});
-
-// generate geshi code body
-$("#geshi-body").keyup(function() {
-  codeBody = $("#geshi-body").val();
-  updateCodeBody();
-  preview("geshi");
-}).keyup();
-
-function updateCodeBody() {
-  (!codeBody == "")
-  // replace < and > with character entities
-  ? ( codeBody = codeBody.replace(/</gi, "&lt;"),
-    codeBody = codeBody.replace(/>/gi, "&gt;"),
-    $("#code-geshi-body").text(codeBody))
-  : $("#code-geshi-body").text("&lt;h1&gt;Hello world&lt;/h1&gt;\n");
-}
-
-// toggle geshi code line nos
-$(document).on("click", "#geshi-check-line-nos", function(event) {
-  $(this).toggleClass("unchecked").toggleClass("checked");
-  $("#code-geshi-line-nos").text( $(this).hasClass("checked") ? ' linenumbers="yes"' : "");
-  $("#geshi-toggle-line-nos").text( $(this).hasClass("checked") ? "Remove" : "Add");
-});
-
-/**********************************
- * infobox                        *
- **********************************/
-
-// change infobox type
-$("#ib-type").change(function() {
-  $("#code-ib-type").text($(this).val());
-  $("#code-ib-alert-class, #code-ib-alert-aria-label, #code-ib-caption").empty();
-  $(this).val() == "alert-instructional" || $(this).val() == "alert-caution"
-    ? (
-      $("#code-ib-alert-class").text("alert "),
-      $("#code-ib-alert-aria-label").text('" aria-label="alert'),
-      $(this).val() == "alert-instructional"
-        ? $("#code-ib-title-open, #code-ib-title-text, #code-ib-title-close").empty()
-        : (
-          $("#ib-title-form").show(),
-          $("#code-ib-title-open").html("\n    &lt;h5&gt;"),
-          $("#code-ib-title-text").text((!$("#ib-df-title").val() == "") ? $("#ib-df-title").val() : "Caution alert title" ),
-          $("#code-ib-title-close").text("</h5>")
-        )
-      )
-    : (
-      $("#code-ib-alert-class, #code-ib-alert-aria-label").empty(),
-      $(this).val() == "key-concept-box"
-        ? (
-          $("#ib-title-form").hide(),
-          $("#code-ib-title-open, #code-ib-title-text, #code-ib-title-close").empty())
-        : (
-          $("#ib-title-form").show(),
-          $("#code-ib-title-open").html("\n    &lt;h5&gt;"),
-          $("#code-ib-title-close").text("</h5>"),
-          $(this).val() == "editing-help-box"
-            ? (
-              $("#code-ib-title-text").text((!$("#ib-df-title").val() == "") ? $("#ib-df-title").val() : "Editing help box title"),
-              $("#code-ib-caption").text('\n    <p class="caption">Note: This help message is not displayed to students.</p>'))
-            : $(this).val() == "definition-box"
-              ? $("#code-ib-title-text").text((!$("#ib-df-title").val() == "") ? $("#ib-df-title").val() : "Definition box title")
-              : $(this).val() == "learning-outcome-box"
-                ? ($("#ib-title-form").hide(), $("#code-ib-title-text").text("Learning outcomes"))
-                : $(this).val() ==  "reading-box"
-                  ? $("#code-ib-title-text").text((!$("#ib-df-title").val() == "") ? $("#ib-df-title").val() : "Reading box title")
-                  : console.log("foo")
-            ));
-  preview("ib");
-});
-
-// update infobox text
-updateText("ib", "#ib-text", "#code-ib-text", "Info box body text");
-updateText("ib", "#ib-df-title", "#code-ib-title-text", "Info box title");
 
 /**********************************
  * list                           *
@@ -1224,6 +967,7 @@ function preview(component) {
  // if (component == "btn") disablePreview();
 }
 
+copyCode("btngroup");
 copyCode("an");
 copyCode("au");
 copyCode("btn");
