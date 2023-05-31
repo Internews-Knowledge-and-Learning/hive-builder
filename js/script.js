@@ -83,8 +83,7 @@ $("#brcr-item-no").on('focus', function() {
 		$('#code-brcr-item-'+newMax+'-spacer').text("");
 		$('#code-brcr-item-'+oldMax+'-open').text(`<a href="`);
 		$('#code-brcr-item-'+oldMax+'-link').text("#");
-		$('#code-brcr-item-'+oldMax+'-title-open').text(`" title="`);
-		$('#code-brcr-item-'+oldMax+'-link-title').text("#");
+		$('#code-brcr-item-'+oldMax+'-title-open').text(`"`);
 		$('#code-brcr-item-'+oldMax+'-title-close').text(`">`);
 		$('#code-brcr-item-'+oldMax+'-spacer').text(`<span class="breadcrumb-spacer"></span>`);
       }
@@ -100,7 +99,6 @@ $("#brcr-item-no").on('focus', function() {
 		$('#code-brcr-item-'+newMax+'-open').text("");
 		$('#code-brcr-item-'+newMax+'-link').text("");
 		$('#code-brcr-item-'+newMax+'-title-open').text("");
-		$('#code-brcr-item-'+newMax+'-link-title').text("");
 		$('#code-brcr-item-'+newMax+'-title-close').text("");
 		$('#code-brcr-item-'+newMax+'-spacer').text("");
       }
@@ -124,7 +122,6 @@ function initialBreadcrumbs(maxCollapseCards) {
 	$('#code-brcr-item-'+maxCollapseCards+'-open').text("");
 	$('#code-brcr-item-'+maxCollapseCards+'-link').text("");
 	$('#code-brcr-item-'+maxCollapseCards+'-title-open').text("");
-	$('#code-brcr-item-'+maxCollapseCards+'-link-title').text("");
 	$('#code-brcr-item-'+maxCollapseCards+'-title-close').text("");
 	$('#code-brcr-item-'+maxCollapseCards+'-spacer').text("");
   }
@@ -133,7 +130,7 @@ function initialBreadcrumbs(maxCollapseCards) {
 
 // create single list item code, shows first card and collapses all others
 function createBreadcrumbItem(i) {
-  return `<span class="code-brcr-item" id="code-brcr-item-${i}"><span class="code-open-tag"><span id="code-brcr-item-${i}-open">&lt;a href="</span><span id="code-brcr-item-${i}-link">#</span><span id="code-brcr-item-${i}-title-open">" title="</span><span id="code-brcr-item-${i}-link-title">#</span><span id="code-brcr-item-${i}-title-close">"&gt;</span>
+  return `<span class="code-brcr-item" id="code-brcr-item-${i}"><span class="code-open-tag"><span id="code-brcr-item-${i}-open">&lt;a href="</span><span id="code-brcr-item-${i}-link">#</span><span id="code-brcr-item-${i}-title-open">"</span><span id="code-brcr-item-${i}-title-close">"&gt;</span>
     <span class="code-brcr-item-${i}-title">#</span><span class="code-close-tag">&lt;&#47;a&gt;</span><span id="code-brcr-item-${i}-spacer">&lt;span class="breadcrumb-spacer">&lt/span></span></span>`;
 }
 
@@ -159,11 +156,10 @@ function createBreadcrumbItemEditorCard(i) {
 // generate card text from input
 updateBreadcrumbItems(8);
 
-function updateBreadcrumbItems(breadcrumbItemLimit) {
-  for (let i = 1; i <= breadcrumbItemLimit; i++) {
-//    toggleCheckbox("brcr", "#brcr-item-${i}-check-sublist", "#brcr-item-${i}-sublist-form");
+function updateBreadcrumbItems(maxCollapseCards) {
+	console.log(maxCollapseCards);
+  for (let i = 1; i <= maxCollapseCards; i++) {
     updateText("brcr", "#brcr-item-" + i + "-title", ".code-brcr-item-" + i + "-title", "Breadcrumb item #" + i + " title");
-	updateText("brcr", "#brcr-item-" + i + "-title", "#code-brcr-item-" + i + "-link-title", "Breadcrumb item #" + i + " title");
 	updateText("brcr", "#brcr-item-" + i + "-link", "#code-brcr-item-" + i + "-link", "#");
 	preview("brcr");
   }
