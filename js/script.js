@@ -130,7 +130,7 @@ function initialBreadcrumbs(maxCollapseCards) {
 
 // create single list item code, shows first card and collapses all others
 function createBreadcrumbItem(i) {
-  return `<span class="code-brcr-item" id="code-brcr-item-${i}"><span class="code-open-tag"><span id="code-brcr-item-${i}-open">&lt;a href="</span><span id="code-brcr-item-${i}-link">#</span><span id="code-brcr-item-${i}-title-open">"</span><span id="code-brcr-item-${i}-title-close">"&gt;</span>
+  return `<span class="code-brcr-item" id="code-brcr-item-${i}"><span class="code-open-tag"><span id="code-brcr-item-${i}-open">&lt;a href="</span><span id="code-brcr-item-${i}-link">#</span><span id="code-brcr-item-${i}-title-open">"</span><span id="code-brcr-item-${i}-title-close">&gt;</span>
     <span class="code-brcr-item-${i}-title">#</span><span class="code-close-tag">&lt;&#47;a&gt;</span><span id="code-brcr-item-${i}-spacer">&lt;span class="breadcrumb-spacer">&lt/span></span></span>`;
 }
 
