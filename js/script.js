@@ -159,7 +159,7 @@ updateBreadcrumbItems(8);
 function updateBreadcrumbItems(maxCollapseCards) {
 	console.log(maxCollapseCards);
   for (let i = 1; i <= maxCollapseCards; i++) {
-    updateText("brcr", "#brcr-item-" + i + "-title", ".code-brcr-item-" + i + "-title", "Breadcrumb item #" + i + " title");
+    updateText("brcr", "#brcr-item-" + i + "-title", ".code-brcr-item-" + i + "-title", "#");
 	updateText("brcr", "#brcr-item-" + i + "-link", "#code-brcr-item-" + i + "-link", "#");
 	preview("brcr");
   }
