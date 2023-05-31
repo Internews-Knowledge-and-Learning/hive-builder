@@ -539,13 +539,11 @@ function initialCollapseCards(maxCollapseCards) {
 
 // create single collapse card code, shows first card and collapses all others
 function createCollapseCard(i) {
-  return `<span id="code-col-card-${i}"><span class="code-open-tag">&lt;div&#32;class&#61;&#34;collapse&#45;card&#32collapsed&#34;&gt;</span>
-    <span class="code-open-tag">&lt;div&#32;class&#61;&#34;collapse&#45;header&#34;&gt;</span>
-      <span class="code-open-tag">&lt;button&#32;class&#61;&#34;btn&#32;btn&#45;link&#34;&gt;</span>
-        <span class="code-open-tag">&lt;h5&#32;class&#61;&#34;h4&#34;&gt;</span><span id="code-col-collapse-${i}-heading">Collapse card #${i} heading</span><span class="code-close-tag">&lt;&#47;h5&gt;</span>
-      <span class="code-close-tag">&lt;&#47;button&gt;</span>
-    <span class="code-close-tag">&lt;&#47;div&gt;</span>
-    <span class="code-open-tag">&lt;div&#32;class&#61;&#34;collapse&#45;body&#34;&gt;</span>
+  return `<span id="code-col-card-${i}"><span class="code-open-tag">&lt;div&#32;class&#61;&#34;panel-heading&#34;&gt;</span>
+    <span class="code-open-tag">&lt;a aria-expanded="false" href="#collapse-${i}" data-toggle="collapse" class="collapsed"&gt;&lt;h4&gt;</span>
+      <span id="code-col-collapse-${i}-heading">Collapse card #${i} heading</span><span class="code-close-tag">&lt;/h4&gt;&lt;/a&gt;</span>
+      <span class="code-close-tag">&lt;&#47;div&gt;</span>
+    <span class="code-open-tag">&lt;div&#32;class&#61;&#34;panel-collapse collapse&#34; id="collapse-${i}" aria-expanded="false"&gt;&lt;div class="panel-body"&gt;</span>
       <span id="code-col-collapse-${i}-body">Collapse card #${i} body</span>
     <span class="code-close-tag">&lt;&#47;div&gt;</span>
   <span class="code-close-tag">&lt;&#47;div&gt;</span></span>`;
@@ -554,11 +552,13 @@ function createCollapseCard(i) {
 // create single collapse editor card, shows first card and collapses all others
 function createCollapseEditorCard(i) {
   return `
-    <div class="collapse-card ${ i == 1 ? "" : "collapsed" }" id="col-card-${i}">
-      <div class="collapse-header" id="col-card-heading-${i}">
-        <button class="btn btn-link"><h5 class="h4">Card #${i}</h5></button>
-      </div>
-      <div class="collapse-body" id="collapse-${i}">
+    <div class="panel-heading">
+		<a aria-expanded="false" href="#col-card-${i}" data-toggle="collapse" class="collapsed">
+			<h4>Card #${i}</h4>
+		</a>
+	</div>
+	<div class="panel-collapse collapse" id="col-card-${i}" aria-expanded="false">
+		<div class="panel-body">
         <form>
           <div class="form-group">
             <label for="collapse-${i}-heading">Heading</label>
@@ -581,6 +581,7 @@ function updateCollapseText(collapseCardLimit) {
   for (let i = 1; i <= collapseCardLimit; i++) {
     updateText("col", "#collapse-" + i + "-heading", "#code-col-collapse-" + i + "-heading", "Collapse card #" + i + "heading");
     updateText("col", "#collapse-" + i + "-body", "#code-col-collapse-" + i + "-body", "Collapse card #" + i + "body");
+	preview("btngroup");
   }
 }
 
