@@ -549,7 +549,6 @@ return `
 // create single collapse editor card, shows first card and collapses all others
 function createPanelgroupEditorCard(i) {
   return `
-	<div class="collapse-card ${ i == 1 ? "" : "collapsed" }" id="col-panel-${i}">
 	<div class="panel-heading">
 		<a aria-expanded="false" href="#col-panel-${i}" data-toggle="collapse" class="collapsed">
 			<h4>Panel #${i}</h4></a>
@@ -580,7 +579,6 @@ function createPanelgroupEditorCard(i) {
         </form>
       </div>
     </div>
-	</div>
   `;
 }
 
