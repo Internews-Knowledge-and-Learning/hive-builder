@@ -551,10 +551,10 @@ function createPanelgroupEditorCard(i) {
   return `
 	<div class="collapse-card ${ i == 1 ? "" : "collapsed" }" id="col-panel-${i}">
 	<div class="panel-heading">
-		<a aria-expanded="false" href="#$col-panel-{i}" data-toggle="collapse" class="collapsed">
+		<a aria-expanded="false" href="#col-panel-${i}" data-toggle="collapse" class="collapsed">
 			<h4>Panel #${i}</h4></a>
 	</div>
-	<div class="panel-collapse collapse" id="$col-panel-{i}" aria-expanded="false">
+	<div class="panel-collapse collapse" id="$col-panel-${i}" aria-expanded="false">
 		<div class="panel-body">
 		<form>
           <div class="form-group">
