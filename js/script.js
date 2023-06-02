@@ -7,9 +7,11 @@ $(document).ready(function() {
   // set collapse to show 3 cards by default
   maxCollapseCards = 3;
   initialCollapseCards(maxCollapseCards);
+  initialPanels(maxCollapseCards);
   initialButtongroupbuttons(maxCollapseCards);
   initialBreadcrumbs(maxCollapseCards);
   preview("dl");
+  preview("panelgroup");
   preview("btngroup");
   preview("brcr");
   // set list to show 3 items by default
@@ -491,6 +493,117 @@ function updateButtongroupText(btncollapseCardLimit) {
     });
   }
 }
+
+/**********************************
+ * Panel Group                   *
+ **********************************/
+
+// on select change, show only the required no of cards to edit, update code and preview
+$("#panel-no").on('focus', function() {
+  $(this).data("previous",$(this).val());
+  $(this).blur();
+  $("#panel-no").change(function(){
+    newMax = Number(($(this).val()));
+    oldMax = Number(($(this).data("previous")));
+    // compare old and new max list item value
+    if (newMax > oldMax) {
+      for (let i = oldMax; i < newMax; i++) {
+        // add new items
+		//$(".code-panelgroup-row").text($("#panelgroup-row").val());
+        panelCard = createpanelcollapseCard(i+1);
+        $("#code-panelgroup-panels").append(panelcollapseCard);
+        colPanel = createPanelgroupEditorCard(i+1);
+        $("#panelgroup-panels").append(colPanel);
+		$(".code-panelgroup-row").text($("#panelgroup-row").val());
+      }
+    } else {
+      for (let i = newMax; i < oldMax; i++) {
+        // remove items
+        $("#code-panelgroup-panel-"+(i+1)).remove();
+        $("#col-panel-"+(i+1)).remove();
+      }
+    }
+    // reset previous value
+    $(this).removeData("previous");
+    preview("panelgroup");
+  });
+});
+
+// create all collapse editor cards and code on page load
+function initialPanels(maxbtncollapseCards) {
+  for (let i = 1; i <= maxbtncollapseCards; i++) {
+    panelcollapseCard = createpanelcollapseCard(i);
+    $("#code-panelgroup-panels").append(panelcollapseCard);
+    colPanel = createPanelgroupEditorCard(i);
+    $("#panelgroup-panels").append(colPanel);
+  }
+  preview("panelgroup");
+}
+
+// create single button code
+function createpanelcollapseCard(i) {
+return `
+	<span id="code-panelgroup-panel-${i}"><span class="code-open-tag">&lt;div class="</span><span class="code-panelgroup-row">${$("#panelgroup-row").val()}</span><span class="code-close-tag">"&gt;</span><span class="code-open-tag">&lt;div class="panel-body"&gt;</span><span class="code-open-tag">&lt;a href="</span><span id="code-panelgroup-panel-${i}-link">#</span><span class="code-close-tag">"&gt;</span><span class="code-open-tag">&lt;img src="</span><span id="code-panelgroup-panel-${i}-image">https://fakeimg.pl/600x400?text=Replace+me</span><span class="code-open-tag">" alt="</span><span id="code-panelgroup-panel-${i}-alt">I require descriptive alt text</span><span class="code-close-tag">" data-themekey="#"&gt;</span><span class="code-open-tag">&lt;h3&gt;</span><span id="code-panelgroup-panel-${i}-title">Title Placeholder</span><span class="code-close-tag">&lt;/h3&gt;</span><span class="code-close-tag">&lt;/a&gt;</span><span class="code-open-tag">&lt;p&gt;</span><span id="code-panelgroup-panel-${i}-body">Body text goes here</span><span class="code-close-tag">&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</span>`;
+}
+
+// create single collapse editor card, shows first card and collapses all others
+function createPanelgroupEditorCard(i) {
+  return `
+	<div class="collapse-card ${ i == 1 ? "" : "collapsed" }" id="col-panel-${i}">
+	<div class="panel-heading">
+		<a aria-expanded="false" href="#${i}" data-toggle="collapse" class="collapsed">
+			<h4>Panel #${i}</h4></a>
+	</div>
+	<div class="panel-collapse collapse" id="${i}" aria-expanded="false">
+		<div class="panel-body">
+		<form>
+          <div class="form-group">
+			<label for="panelgroup-panel-${i}-image">Image</label>
+			<input type="text" class="form-control" id="panelgroup-panel-${i}-image" placeholder="Paste in the URL of your image">
+		</div>
+		<div class="form-group">
+			<label for="panelgroup-panel-${i}-alt">Alt text</label>
+			<input type="text" class="form-control" id="panelgroup-panel-${i}-alt" placeholder="Describe the image for a person with a visual impairment"</input>
+		</div>
+		<div class="form-group">
+			<label for="panelgroup-panel-${i}-link">Link</label>
+			<input type="text" class="form-control" id="panelgroup-panel-${i}-link" placeholder="Paste in the URL of the page you are linking to"</input>
+		</div>
+		<div class="form-group">
+            <label for="panelgroup-panel-${i}-title">Title</label>
+            <input type="text" class="form-control" id="panelgroup-panel-${i}-title" placeholder="Panel ${i} title">
+          </div>
+		  <div class="form-group">
+            <label for="panelgroup-panel-${i}-body">Body</label>
+            <input type="text" class="form-control" id="panelgroup-panel-${i}-body" placeholder="Panel ${i} body">
+          </div>
+        </form>
+      </div>
+    </div>
+	</div>
+  `;
+}
+
+$("#panelgroup-row").change(function() {
+		$(".code-panelgroup-row").text($(this).val());
+		preview("panelgroup");
+});
+
+
+// generate card text from input
+updatePanelgroupText(8);
+
+function updatePanelgroupText(btncollapseCardLimit) {
+  for (let i = 1; i <= btncollapseCardLimit; i++) {
+    updateText("panelgroup", "#panelgroup-panel-" + i + "-image", "#code-panelgroup-panel-" + i + "-image", "#");
+    updateText("panelgroup", "#panelgroup-panel-" + i + "-alt", "#code-panelgroup-panel-" + i + "-alt", "I require descriptive alt text");
+	updateText("panelgroup", "#panelgroup-panel-" + i + "-title", "#code-panelgroup-panel-" + i + "-title", "Title Placeholder");
+	updateText("panelgroup", "#panelgroup-panel-" + i + "-link", "#code-panelgroup-panel-" + i + "-link", "#");
+	updateText("panelgroup", "#panelgroup-panel-" + i + "-body", "#code-panelgroup-panel-" + i + "-body", "Body text goes here");
+  preview("panelgroup");
+  }
+}
+
 
 
 /**********************************
@@ -1080,6 +1193,7 @@ function preview(component) {
 }
 
 copyCode("btngroup");
+copyCode("panelgroup");
 copyCode("brcr");
 copyCode("an");
 copyCode("au");

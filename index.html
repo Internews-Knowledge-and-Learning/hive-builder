@@ -292,6 +292,79 @@
     </div>
 	</div>
 	</div>
+	<div class="panel-heading">
+<a aria-expanded="false" href="#panel-group" data-toggle="collapse" class="collapsed"><h4>Panel Group</h4></a></div>
+<div class="collapse panel-collapse" id="panel-group" aria-expanded="false">
+<div class="panel-body">
+	<h2>Panel Group</h2>
+    <div class="row">
+      <div class="options col-md-6">
+        <section class="options">
+          <h3>Options</h3>
+          <p>Complete the following fields:</p>
+          <form class="needs-validation" id="col-form" novalidate>
+              <div class="form-group col-md-12">
+			  <div class="row">
+              <div class="input-group col-md-4">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="panel-no">No. of panels</label>
+                </div>
+				<div class="input-group-prepend">
+                <select class="custom-select" id="panel-no">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3" selected>3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                </select>
+              </div>
+			  </div>
+              <div class="form-group col-md-4">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="panelgroup-row">Number of panels per row</label>
+                  </div>
+                  <div class="input-group-prepend">
+                <select class="custom-select" id="panelgroup-row">
+                  <option value="col-md-6">2</option>
+                  <option value="col-md-4" selected>3</option>
+                  <option value="col-md-3">4</option>
+                </select>
+              </div>
+                </div>
+              </div>
+          </form>
+		  </div>
+		  <div class="row">
+          <div class="panel-group" id="panelgroup-panels">
+          </div>
+		  </div>
+        </section>
+		</div>
+      <div class="col-md-6">
+        <section class="preview">
+          <h3 class="preview-title">Preview</h3>
+          <div id="panelgroup-preview-pane"></div>
+        </section>
+        <section class="component-code">
+          <div class="code-header">
+            <h3 class="code-title">Code</h3>
+            <button class="btn btn-secondary" id="copy-panelgroup-code" type="submit">Copy Code</button>
+          </div>
+          <div class="code-box">
+<pre class="code-text"><span id="panelgroup-print-code"><span class="code-open-tag">&lt;div class="row green-panel"&gt;</span>
+  <span id="code-panelgroup-panels"></span>
+<span class="code-close-tag">&lt;&#47;div&gt;</span></span></pre>
+          </div>
+        </section>
+      </div>
+    </div>
+	</div>
+	</div>
+	</div>
 </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://internews.sharepoint.com/style%20library/custom/js/bootstrap.min.js?ctag=230524"></script>
