@@ -86,7 +86,7 @@ $("#brcr-item-no").on('focus', function() {
 		$('#code-brcr-item-'+oldMax+'-open').text(`<a href="`);
 		$('#code-brcr-item-'+oldMax+'-link').text("#");
 		$('#code-brcr-item-'+oldMax+'-title-open').text(`"`);
-		$('#code-brcr-item-'+oldMax+'-title-close').text(`">`);
+		$('#code-brcr-item-'+oldMax+'-title-close').text(`>`);
 		$('#code-brcr-item-'+oldMax+'-spacer').text(`<span class="breadcrumb-spacer"></span>`);
       }
     } else {
