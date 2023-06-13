@@ -508,11 +508,10 @@ $("#panel-no").on('focus', function() {
     if (newMax > oldMax) {
       for (let i = oldMax; i < newMax; i++) {
         // add new items
-		//$(".code-panelgroup-row").text($("#panelgroup-row").val());
-        panelCard = createpanelcollapseCard(i+1);
-        $("#code-panelgroup-panels").append(panelcollapseCard);
-        colPanel = createPanelgroupEditorCard(i+1);
+		colPanel = createPanelgroupEditorCard(i+1);
         $("#panelgroup-panels").append(colPanel);
+        panelCard = createpanelcollapseCard(i+1);
+        $("#code-panelgroup-panels").append(panelCard);
 		$(".code-panelgroup-row").text($("#panelgroup-row").val());
       }
     } else {
@@ -542,7 +541,7 @@ function initialPanels(maxbtncollapseCards) {
 // create single button code
 function createpanelcollapseCard(i) {
 return `
-	<span id="code-panelgroup-panel-${i}"><span class="code-open-tag">&lt;div class="</span><span class="code-panelgroup-row">${$("#panelgroup-row").val()}</span><span class="code-close-tag">"&gt;</span><span class="code-open-tag">&lt;div class="panel-body"&gt;</span><span class="code-open-tag">&lt;a href="</span><span id="code-panelgroup-panel-${i}-link">#</span><span class="code-close-tag">"&gt;</span><span class="code-open-tag">&lt;img src="</span><span id="code-panelgroup-panel-${i}-image">https://fakeimg.pl/600x400?text=Replace+me</span><span class="code-open-tag">" alt="</span><span id="code-panelgroup-panel-${i}-alt">I require descriptive alt text</span><span class="code-close-tag">" data-themekey="#"&gt;</span><span class="code-open-tag">&lt;h3&gt;</span><span id="code-panelgroup-panel-${i}-title">Title Placeholder</span><span class="code-close-tag">&lt;/h3&gt;</span><span class="code-close-tag">&lt;/a&gt;</span><span class="code-open-tag">&lt;p&gt;</span><span id="code-panelgroup-panel-${i}-body">Body text goes here</span><span class="code-close-tag">&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</span>`;
+	<span id="code-panelgroup-panel-${i}"><span class="code-open-tag">&lt;div class="</span><span class="code-panelgroup-row">${$("#panelgroup-row").val()}</span><span class="code-close-tag">"&gt;</span><span class="code-open-tag">&lt;div class="panel-body"&gt;</span><span class="code-open-tag">&lt;a href="</span><span id="code-panelgroup-panel-${i}-link">#</span><span class="code-close-tag">"&gt;</span><span class="code-open-tag">&lt;img src="</span><span id="code-panelgroup-panel-${i}-image">https://fakeimg.pl/600x400?text=Replace+me</span><span class="code-open-tag">" alt="</span><span id="code-panelgroup-panel-${i}-alt">I require descriptive alt text</span><span class="code-close-tag">" data-themekey="#"&gt;</span><span class="code-open-tag">&lt;h3&gt;</span><span id="code-panelgroup-panel-${i}-title">Title Placeholder</span><span class="code-close-tag">&lt;/h3&gt;</span><span class="code-close-tag">&lt;/a&gt;</span><span class="code-open-tag">&lt;p&gt;</span><span id="code-panelgroup-panel-${i}-body"></span><span class="code-close-tag">&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</span>`;
 }
 
 // create single collapse editor card, shows first card and collapses all others
@@ -590,13 +589,13 @@ $("#panelgroup-row").change(function() {
 // generate card text from input
 updatePanelgroupText(8);
 
-function updatePanelgroupText(btncollapseCardLimit) {
-  for (let i = 1; i <= btncollapseCardLimit; i++) {
+function updatePanelgroupText(maxbtncollapseCards) {
+  for (let i = 1; i <= maxbtncollapseCards; i++) {
     updateText("panelgroup", "#panelgroup-panel-" + i + "-image", "#code-panelgroup-panel-" + i + "-image", "#");
     updateText("panelgroup", "#panelgroup-panel-" + i + "-alt", "#code-panelgroup-panel-" + i + "-alt", "I require descriptive alt text");
 	updateText("panelgroup", "#panelgroup-panel-" + i + "-title", "#code-panelgroup-panel-" + i + "-title", "Title Placeholder");
 	updateText("panelgroup", "#panelgroup-panel-" + i + "-link", "#code-panelgroup-panel-" + i + "-link", "#");
-	updateText("panelgroup", "#panelgroup-panel-" + i + "-body", "#code-panelgroup-panel-" + i + "-body", "Body text goes here");
+	updateText("panelgroup", "#panelgroup-panel-" + i + "-body", "#code-panelgroup-panel-" + i + "-body", "");
   preview("panelgroup");
   }
 }
