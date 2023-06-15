@@ -481,8 +481,8 @@ updateButtongroupText(8);
 
 function updateButtongroupText(btncollapseCardLimit) {
   for (let i = 1; i <= btncollapseCardLimit; i++) {
-    updateText("btngroup", "#button-" + i + "-text", "#code-button-" + i + "-text", "Button #" + i + "text");
-    updateText("btngroup", "#button-" + i + "-header", "#code-button-" + i + "-header", "Button #" + i + "header");
+    updateText("btngroup", "#button-" + i + "-text", "#code-button-" + i + "-text", "");
+    updateText("btngroup", "#button-" + i + "-header", "#code-button-" + i + "-header", "");
 	updateText("btngroup", "#button-" + i + "-link", "#code-button-" + i + "-link", "#");
   preview("btngroup");
   $(document).on('click', "#button-" + i + "-color", function (event) {
@@ -582,6 +582,11 @@ function createPanelgroupEditorCard(i) {
 
 $("#panelgroup-row").change(function() {
 		$(".code-panelgroup-row").text($(this).val());
+		preview("panelgroup");
+});
+
+$("#panelgroup-image").change(function() {
+		$("#code-panelgroup-image").text($(this).val());
 		preview("panelgroup");
 });
 

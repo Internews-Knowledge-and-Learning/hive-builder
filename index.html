@@ -336,6 +336,19 @@
               </div>
                 </div>
               </div>
+			  <div class="form-group col-md-4">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="panelgroup-image">Image orientation</label>
+					</div>
+					<div class="input-group-prepend">
+						<select class="custom-select" id="panelgroup-image">
+							<option value="">Vertical</option>
+							<option value="horizontal">Horizontal</option>
+						</select>
+					</div>
+				</div>
+			</div>
           </form>
 		  </div>
 		  <div class="row">
@@ -356,7 +369,7 @@
             <button class="btn btn-secondary" id="copy-panelgroup-code" type="submit">Copy Code</button>
           </div>
           <div class="code-box">
-<pre class="code-text"><span id="panelgroup-print-code"><span class="code-open-tag">&lt;div class="row green-panel"&gt;</span>
+<pre class="code-text"><span id="panelgroup-print-code"><span class="code-open-tag">&lt;div class="row green-panel </span><span id="code-panelgroup-image"></span><span class="code-open-tag">"&gt;</span>
   <span id="code-panelgroup-panels"></span>
 <span class="code-close-tag">&lt;&#47;div&gt;</span></span></pre>
           </div>
