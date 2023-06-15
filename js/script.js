@@ -547,11 +547,12 @@ return `
 // create single collapse editor card, shows first card and collapses all others
 function createPanelgroupEditorCard(i) {
   return `
+	<div id="col-panel-${i}">
 	<div class="panel-heading">
-		<a aria-expanded="false" href="#col-panel-${i}" data-toggle="collapse" class="collapsed">
+		<a aria-expanded="false" href="#col-panel-collapse-${i}" data-toggle="collapse" class="collapsed">
 			<h4>Panel #${i}</h4></a>
 	</div>
-	<div class="panel-collapse collapse" id="col-panel-${i}" aria-expanded="false">
+	<div class="panel-collapse collapse" id="col-panel-collapse-${i}" aria-expanded="false">
 		<div class="panel-body">
 		<form>
           <div class="form-group">
@@ -577,6 +578,7 @@ function createPanelgroupEditorCard(i) {
         </form>
       </div>
     </div>
+	</div>
   `;
 }
 
@@ -592,9 +594,9 @@ $("#panelgroup-image").change(function() {
 
 
 // generate card text from input
-updatePanelgroupText(12);
+updatePanelgroupText();
 
-function updatePanelgroupText(maxbtncollapseCards) {
+function updatePanelgroupText() {
   for (let i = 1; i <= 12; i++) {
     updateText("panelgroup", "#panelgroup-panel-" + i + "-image", "#code-panelgroup-panel-" + i + "-image", "#");
     updateText("panelgroup", "#panelgroup-panel-" + i + "-alt", "#code-panelgroup-panel-" + i + "-alt", "I require descriptive alt text");
