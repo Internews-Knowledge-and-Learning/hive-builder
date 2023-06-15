@@ -595,7 +595,7 @@ $("#panelgroup-image").change(function() {
 updatePanelgroupText(12);
 
 function updatePanelgroupText(maxbtncollapseCards) {
-  for (let i = 1; i <= maxbtncollapseCards; i++) {
+  for (let i = 1; i <= 12; i++) {
     updateText("panelgroup", "#panelgroup-panel-" + i + "-image", "#code-panelgroup-panel-" + i + "-image", "#");
     updateText("panelgroup", "#panelgroup-panel-" + i + "-alt", "#code-panelgroup-panel-" + i + "-alt", "I require descriptive alt text");
 	updateText("panelgroup", "#panelgroup-panel-" + i + "-title", "#code-panelgroup-panel-" + i + "-title", "Title Placeholder");
