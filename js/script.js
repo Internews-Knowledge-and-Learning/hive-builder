@@ -592,7 +592,7 @@ $("#panelgroup-image").change(function() {
 
 
 // generate card text from input
-updatePanelgroupText(8);
+updatePanelgroupText(12);
 
 function updatePanelgroupText(maxbtncollapseCards) {
   for (let i = 1; i <= maxbtncollapseCards; i++) {
