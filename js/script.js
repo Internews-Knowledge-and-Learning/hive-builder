@@ -432,7 +432,7 @@ $("#btngroup-style").change(function() {
 // create single button code
 function createbtncollapseCard(i) {
 return `
-	<span id="code-buttongroup-button-${i}"><span class="code-open-tag">&lt;a</span>&#32;href="<span id="code-button-${i}-link">#</span>" class&#61;&#34;<span id="code-button-${i}-color">${ $("#btngroup-style").val() == "secondary" ? "buttons border dkblue-under" : "buttons block-buttons blue-border" }</span>&#34;&gt;</span>
+	<span id="code-buttongroup-button-${i}"><span class="code-open-tag">&lt;a</span>&#32;href="<span id="code-button-${i}-link">#</span>" class&#61;&#34;<span id="code-button-${i}-color">${ $("#btngroup-style").val() == "secondary" ? "buttons border dkblue-under" : "buttons block-buttons blue-border" }</span>&#34;&gt;
   <span id="code-button-${i}-header-open">&lt;h3></span><span id="code-button-${i}-header"></span><span id="code-button-${i}-header-close">&lt;/h3></span><span id="code-button-${i}-text">Button Text</span>
 <span class="code-close-tag">&lt;&#47;<span class="code-btn-tag">a</span>&gt;</span></span>
  </span>`;
@@ -442,6 +442,7 @@ return `
 function createButtongroupEditorCard(i) {
   return `
 	<div class="collapse-card ${ i == 1 ? "" : "collapsed" }" id="col-button-${i}">
+	<div class="panel">
 	<div class="panel-heading">
 		<a aria-expanded="false" href="#${i}" data-toggle="collapse" class="collapsed">
 			<h4>Button #${i}</h4></a>
@@ -471,6 +472,7 @@ function createButtongroupEditorCard(i) {
         </form>
       </div>
     </div>
+	</div>
 	</div>
   `;
 }
@@ -633,7 +635,7 @@ $("#col-card-no").on('focus', function() {
       for (let i = newMax; i < oldMax; i++) {
         // remove items
         $("#code-col-card-"+(i+1)).remove();
-        $("#col-card-"+(i+1)).remove();
+        $("#col-edit-card-"+(i+1)).remove();
       }
     }
     // reset previous value
@@ -655,20 +657,21 @@ function initialCollapseCards(maxCollapseCards) {
 
 // create single collapse card code, shows first card and collapses all others
 function createCollapseCard(i) {
-  return `<span id="code-col-card-${i}"><span class="code-open-tag">&lt;div&#32;class&#61;&#34;panel-heading&#34;&gt;</span>
+  return `<span id="code-col-card-${i}"><span class="code-open-tag">&lt;div&#32;class&#61;&#34;panel&#34;&gt;&lt;div&#32;class&#61;&#34;panel-heading&#34;&gt;</span>
     <span class="code-open-tag">&lt;a aria-expanded="false" href="#collapse-${i}" data-toggle="collapse" class="collapsed"&gt;&lt;h4&gt;</span>
       <span id="code-col-collapse-${i}-heading">Collapse card #${i} heading</span><span class="code-close-tag">&lt;/h4&gt;&lt;/a&gt;</span>
       <span class="code-close-tag">&lt;&#47;div&gt;</span>
     <span class="code-open-tag">&lt;div&#32;class&#61;&#34;panel-collapse collapse&#34; id="collapse-${i}" aria-expanded="false"&gt;&lt;div class="panel-body"&gt;</span>
       <span id="code-col-collapse-${i}-body">Collapse card #${i} body</span>
     <span class="code-close-tag">&lt;&#47;div&gt;</span>
-  <span class="code-close-tag">&lt;&#47;div&gt;</span></span>`;
+  <span class="code-close-tag">&lt;&#47;div&gt;&lt;&#47;div&gt;</span></span>`;
 }
 
 // create single collapse editor card, shows first card and collapses all others
 function createCollapseEditorCard(i) {
   return `
-    <div class="panel-heading">
+    <div class="panel" id="col-edit-card-${i}">
+	<div class="panel-heading">
 		<a aria-expanded="false" href="#col-card-${i}" data-toggle="collapse" class="collapsed">
 			<h4>Card #${i}</h4>
 		</a>
@@ -687,6 +690,7 @@ function createCollapseEditorCard(i) {
         </form>
       </div>
     </div>
+	</div>
   `;
 }
 
