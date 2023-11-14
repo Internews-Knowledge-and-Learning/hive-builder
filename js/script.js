@@ -655,6 +655,11 @@ function initialCollapseCards(maxCollapseCards) {
   preview("col");
 }
 
+$("#col-card-type").change(function() {
+		$("#code-card-type").text($(this).val());
+		preview("col");
+});
+
 // create single collapse card code, shows first card and collapses all others
 function createCollapseCard(i) {
   return `<span id="code-col-card-${i}"><span class="code-open-tag">&lt;div&#32;class&#61;&#34;panel&#34;&gt;&lt;div&#32;class&#61;&#34;panel-heading&#34;&gt;</span>

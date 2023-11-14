@@ -269,8 +269,19 @@
                 </select>
               </div>
 			  </div>
+			  <div class="input-group col-md-4">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="col-card-type">Type of collapse</labels>
+				</div>
+				<div class="input-group-prepend">
+				<select class="custom-select" id="col-card-type">
+					<option value="">Default</option>
+					<option value="light">Light</option>
+				</select>
+				</div>
               </div>
           </form>
+		  </div>
 		  
 		  <div class="row">
           <div class="panel-group" id="collapse-cards">
@@ -290,7 +301,7 @@
             <button class="btn btn-secondary" id="copy-col-code" type="submit">Copy Code</button>
           </div>
           <div class="code-box">
-<pre class="code-text"><span id="col-print-code"><span class="code-open-tag">&lt;div class="panel-group"&gt;</span>
+<pre class="code-text"><span id="col-print-code"><span class="code-open-tag">&lt;div class="panel-group <span id="code-card-type"></span>"&gt;</span>
   <span id="code-col-cards"></span>
 <span class="code-close-tag">&lt;&#47;div&gt;</span></span></pre>
           </div>
