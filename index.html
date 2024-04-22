@@ -74,6 +74,7 @@
 	</div>
 	</div>
 	</div>
+	
 			<div class="panel">
 			<div class="panel-heading">
 				<a aria-expanded="false" href="#button" data-toggle="collapse" class="collapsed"><h4>Button</h4></a>
@@ -93,7 +94,7 @@
                     <label class="input-group-text" for="btn-style">Button style</label>
                   </div>
                   <select class="custom-select" id="btn-style">
-                    <option value="block-buttons blue-border" selected>Standard</option>
+                    <option value="block-buttons blue-border" selected>Primary</option>
                     <option value="inline-buttons blue-border">Small</option>
 					<option value="border dkblue-under">Secondary - Dark Blue</option>
 					<option value="border ltblue-under">Secondary - Light Blue</option>
@@ -107,13 +108,13 @@
               <div class="input-group-prepend">
                 <label class="input-group-text" for="btn-header">Button header</label>
               </div>
-              <input type="text" class="form-control" id="btn-header" aria-label="btn-header">
+              <input type="text" class="form-control" id="btn-header" aria-label="btn-header" placeholder="Button header">
             </div>
 			<div class="input-group mb-3">
               <div class="input-group-prepend">
                 <label class="input-group-text" for="btn-text">Button text</label>
               </div>
-              <input type="text" class="form-control" id="btn-text" aria-label="btn-text" placeholder="Button Text">
+              <input type="text" class="form-control" id="btn-text" aria-label="btn-text">
             </div>
             <div class="form-row">
            
@@ -133,7 +134,7 @@
         <section class="preview">
           <h3 class="preview-title">Preview</h3>
           <div id="btn-preview-pane">
-            <a class="buttons block-buttons blue-border" href="#">Button Text</a>
+            <a class="buttons block-buttons blue-border" href="#"><h3>Button header</h3></a>
           </div>
         </section>
         <section class="component-code">
@@ -144,7 +145,7 @@
           <div class="code-box">
             <pre class="code-text">
 <span id="btn-print-code"><span class="code-open-tag">&lt;<span class="code-btn-tag">a</span>&#32;href="<span id="code-btn-link">#</span>" class&#61;&#34;<span id="code-btn-class-style">buttons&#32;block&#45;buttons&#32;blue&#45;border</span>&#34;&gt;</span>
-  <span id="code-btn-header"></span><span id="code-btn-text">Button Text</span>
+  <span id="code-btn-header"></span><span id="code-btn-text"></span>
 <span class="code-close-tag">&lt;&#47;<span class="code-btn-tag">a</span>&gt;</span></span>
             </pre>
           </div>
@@ -203,7 +204,7 @@
                     <label class="input-group-text" for="btngroup-style">Button style</label>
                   </div>
                   <select class="custom-select" id="btngroup-style">
-                    <option value="standard" selected>Standard</option>
+                    <option value="standard" selected>Primary</option>
 					<option value="secondary">Secondary</option>
                   </select>
                 </div>
@@ -353,7 +354,6 @@
                   </div>
                   <div class="input-group-prepend">
                 <select class="custom-select" id="panelgroup-row">
-                  <option value="col-md-6">2</option>
                   <option value="col-md-4" selected>3</option>
                   <option value="col-md-3">4</option>
                 </select>

@@ -48,7 +48,8 @@ $("#btn-header").change(function() {
 
 
 // generates button text from input
-updateText("btn", "#btn-text", "#code-btn-text", "Button Text");
+updateText("btn", "#btn-text", "#code-btn-text", "");
+updateText("btn", "#btn-header", "#code-btn-header", "");
 
 // generates link text from input
 updateText("btn", "#btn-link", "#code-btn-link", "#");
@@ -433,7 +434,7 @@ $("#btngroup-style").change(function() {
 function createbtncollapseCard(i) {
 return `
 	<span id="code-buttongroup-button-${i}"><span class="code-open-tag">&lt;a</span>&#32;href="<span id="code-button-${i}-link">#</span>" class&#61;&#34;<span id="code-button-${i}-color">${ $("#btngroup-style").val() == "secondary" ? "buttons border dkblue-under" : "buttons block-buttons blue-border" }</span>&#34;&gt;
-  <span id="code-button-${i}-header-open">&lt;h3></span><span id="code-button-${i}-header"></span><span id="code-button-${i}-header-close">&lt;/h3></span><span id="code-button-${i}-text">Button Text</span>
+  <span id="code-button-${i}-header-open">&lt;h3></span><span id="code-button-${i}-header">Button header</span><span id="code-button-${i}-header-close">&lt;/h3></span><span id="code-button-${i}-text"></span>
 <span class="code-close-tag">&lt;&#47;<span class="code-btn-tag">a</span>&gt;</span></span>
  </span>`;
 }
